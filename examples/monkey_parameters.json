@@ -1,0 +1,15 @@
+{
+    "clips": [
+        "media/panda_30hz.mp4",
+        "media/panda_120hz.mp4",
+        "media/penguin_30hz.mp4",
+        "media/penguin_120hz.mp4",
+        "media/rings_slow.mp4",
+        "media/rings_fast_center.mp4",
+        "media/rings_slow_center.mp4",
+        "media/slide_panda_slow.mp4",
+        "media/slide_panda_fast.mp4"
+    ],
+    "output": "monkey_output.es",
+    "loop": true
+}
