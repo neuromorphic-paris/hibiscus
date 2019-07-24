@@ -9,6 +9,6 @@ clang-format -i teensy/eventide/eventide.ino
 clang-format -i teensy/record/record.ino
 
 ssh root@20.20.20.99 "date -u -s '$(date -u)'"
-rsync -avz --exclude build ./ $host:$path/
+rsync -avz --exclude build --exclude .git ./ $host:$path/
 ssh $host "cd $path && premake4 gmake && cd build && make"
 ssh $host "cd $path/third_party/hummingbird && premake4 gmake && cd build && make"
