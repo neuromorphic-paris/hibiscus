@@ -7,3 +7,6 @@
 [submodule "third_party/hummingbird"]
 	path = third_party/hummingbird
 	url = https://github.com/neuromorphic-paris/hummingbird.git
+[submodule "third_party/CppNumericalSolvers"]
+	path = third_party/CppNumericalSolvers
+	url = https://github.com/PatWie/CppNumericalSolvers.git
