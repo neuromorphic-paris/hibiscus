@@ -562,6 +562,7 @@ int main(int argc, char* argv[]) {
                     std::size_t clip_index = 1;
                     while (running.load(std::memory_order_acquire)) {
                         wait_for_empty_fifo.store(true, std::memory_order_release);
+                        started = false;
                         decoder->read(command.arguments[clip_index]);
                         if (!running.load(std::memory_order_acquire)) {
                             break;
