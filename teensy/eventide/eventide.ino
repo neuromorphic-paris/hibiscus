@@ -1,8 +1,6 @@
 const byte bnc_pin = 37;
-const byte unused_pin = 38;
-const byte jetson_up_pin = 28;
-const byte jetson_switch_on_pin = 29;
 const byte led_pin = 13;
+const byte dmd_pin = 23;
 
 /// serial_state contains the state parameters for the software serial reader.
 struct serial_state {
@@ -64,13 +62,13 @@ bool read_serial(const uint32_t now, byte* value, serial_state* state) {
         case 4: {
             if (digitalReadFast(state->pin) == LOW) {
                 state->code = 3;
-            } else if (now - state->start_t >= (uint32_t)state->start_offset + 8 * (uint32_t)state->tick_duration) {
+            } else if (now - state->start_t >= (uint32_t)state->start_offset + 8u * (uint32_t)state->tick_duration) {
                 state->code = 0;
             }
             break;
         }
         default: {
-            state->code = 0;
+            state->code = 3;
             break;
         }
     }
@@ -122,22 +120,11 @@ byte read_index = 0;
 uint32_t previous_read_t = 0;
 
 void setup() {
-    pinMode(jetson_up_pin, INPUT);
-    pinMode(jetson_switch_on_pin, OUTPUT);
     pinMode(bnc_pin, INPUT);
-    pinMode(unused_pin, OUTPUT);
     pinMode(led_pin, OUTPUT);
+    pinMode(dmd_pin, OUTPUT);
     digitalWrite(led_pin, LOW);
-
-    // boot the jetson
-    digitalWrite(jetson_switch_on_pin, HIGH);
-    if (digitalRead(jetson_up_pin) == LOW) {
-        delay(500);
-        digitalWrite(jetson_switch_on_pin, LOW);
-        while (digitalRead(jetson_up_pin) == LOW) {
-        }
-        digitalWrite(jetson_switch_on_pin, HIGH);
-    }
+    digitalWrite(dmd_pin, LOW);
 
     // start the USB communication
     Serial.begin(9600);

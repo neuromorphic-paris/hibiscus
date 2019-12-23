@@ -185,11 +185,6 @@ int main(int argc, char* argv[]) {
                     std::fill(bytes.begin(), bytes.end(), 0);
                     display->pause_and_clear(bytes, &wait_for_empty_fifo);
                     while (running.load(std::memory_order_acquire)) {
-                        // @DEBUG {
-                        std::cout << "begin loop\n";
-                        std::cout.flush();
-                        // }
-
                         while (expecting_byte.test_and_set(std::memory_order_acquire)
                                && running.load(std::memory_order_acquire)) {
                             std::this_thread::sleep_for(std::chrono::milliseconds(20));

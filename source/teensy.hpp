@@ -23,6 +23,7 @@ namespace hibiscus {
     };
 
     /// tty represents a generic serial connection.
+    /// timeout is a number of 0.1 s intervals.
     class tty {
         public:
         tty(const std::string& filename, uint64_t baudrate, uint64_t timeout) :
@@ -81,7 +82,7 @@ namespace hibiscus {
     /// teensy manages the communication with the Teensy.
     class teensy {
         public:
-        teensy() : _tty("/dev/ttyACM0", B9600, 20) {}
+        teensy() : _tty("/dev/ttyACM0", B9600, 1) {}
         teensy(const teensy&) = delete;
         teensy(teensy&&) = default;
         teensy& operator=(const teensy&) = delete;

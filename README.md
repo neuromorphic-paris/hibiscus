@@ -432,19 +432,24 @@ netmask 255.255.255.0
 rm -f ~/Desktop/chromium-browser.desktop
 ```
 
-15. add a udev rule to allow non-root users to read data from the LiveTrack:
+15. enable non-root access to the Teensy
+```sh
+sudo usermod -a -G dialout nvidia
+```
+
+16. add a udev rule to allow non-root users to read data from the LiveTrack:
 ```sh
 printf 'SUBSYSTEMS=="usb", ATTRS{idVendor}=="0861", ATTRS{idProduct}=="3437", MODE="0660" GROUP="nvidia"\n' | sudo tee '/etc/udev/rules.d/99-livetrack.rules'
 ```
 
-16. change the wallpaper and disable the file browser auto-open on USB mount:
+17. change the wallpaper and disable the file browser auto-open on USB mount:
 ```sh
 sudo gsettings set org.gnome.desktop.background picture-uri file:///home/nvidia/hibiscus/wallpaper.png
 sudo sudo gsettings set org.gnome.desktop.media-handling automount-open false
 sudo reboot
 ```
 
-17. install the `eventstream` python module:
+18. install the `eventstream` python module:
 ```sh
 pip3 install numpy
 git clone --recursive https://github.com/neuromorphic-paris/utilities.git
@@ -452,10 +457,15 @@ cd utilities/bindings/python
 python3 setup.py install
 ```
 
-18. add exFAT support:
+19. add exFAT support:
 ```sh
 sudo apt install exfat-fuse
 sudo apt install exfat-utils
+```
+
+20. allow non-root to set the date by adding `nvidia ALL=(ALL) NOPASSWD: /bin/date` to the sudoers configuration
+```
+sudo visudo
 ```
 
 # teensy
