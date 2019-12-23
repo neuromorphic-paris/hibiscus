@@ -1,6 +1,15 @@
-![banner](banner.png)
+![banner](figures/banner.png)
 
 Hibiscus bundles tools to build a complete psychophysics platform on top of hummingbird. It is meant for a Jetson TX1 and a Teensy 3.5.
+
+![device](figures/device.png)
+
+# parts
+
+3D models of the Hibiscus components can be found in the *parts* directory, in STL format:
+- *parts/box/* contains 3D models of the printable components required to assemble an Hibiscus box, in STL format. *parts/box/box.step* contains the whole assembly, and can be used as a reference to assemble it.
+- *parts/optical_plate/* contains 3D models of the components of a box-less Hibiscus system, designed to be placed on a metric optical plate. *parts/optical_plate/optical_plate.step* contains the whole assembly, and can be used as a reference to assemble it.
+- *parts/response-box/* provides the 3D models of the response box. *parts/response_box/response_box.step* contains the whole assembly, and can be used as a reference to assemble it.
 
 # connect to the Jetson
 
